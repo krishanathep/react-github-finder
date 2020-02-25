@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import Nav from './components/layouts/Nav'
 import Users from './components/users/Users'
 import Search from './components/search/Search'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from 'axios'
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 
 
 class App extends Component {

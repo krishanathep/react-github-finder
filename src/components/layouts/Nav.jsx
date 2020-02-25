@@ -5,7 +5,7 @@ export class Nav extends Component {
     render() {
         return (
             <div>
-                <Navbar bg="success" variant="dark">
+                <Navbar bg="primary" variant="dark">
                     <Navbar.Brand>
                         <i className="fab fa-github"></i> Github Finder 
                     </Navbar.Brand>
