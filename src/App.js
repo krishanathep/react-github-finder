@@ -1,8 +1,10 @@
-import React, { Comment, Component } from 'react'
+import React, { Component } from 'react'
 import Nav from './components/layouts/Nav'
 import Users from './components/users/Users'
 import Search from './components/search/Search'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import axios from 'axios'
+
 
 class App extends Component {
   constructor() {
@@ -10,16 +12,19 @@ class App extends Component {
 
     this.state = {
       users: [],
-      searchField: ''
+      searchField: '',
+      loading: false
     }
 
     this.handleChange = this.handleChange.bind(this)
   }
 
-  componentDidMount() {
-    fetch('https://api.github.com/users')
-      .then(response => response.json())
-      .then(users => this.setState({users: users}))
+  async componentDidMount() {
+    this.setState({ loading: true })
+
+    const res = await axios.get('https://api.github.com/users')
+
+    this.setState({ users: res.data, loading: false })
   }
 
   handleChange = (e) => {
@@ -37,7 +42,7 @@ class App extends Component {
         <Nav />
         <div className="container">
           <Search handleChange={this.handleChange} />
-          <Users users={filteredUsers} />
+          <Users users={filteredUsers} loading={this.state.loading} />
         </div>
       </div>
     )
