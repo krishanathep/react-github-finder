@@ -22,9 +22,17 @@ export class Users extends Component {
                                         <Card.Title>{user.login}</Card.Title>
                                         <Card.Text>
                                             <Button
-                                                block variant="info"
-                                                href={user.html_url}>
+                                                className="mr-1"
+                                                variant="primary"
+                                                href={user.html_url}
+                                            >
                                                 Read More
+                                        </Button>
+                                        <Button
+                                            variant="success"
+                                            onClick={this.props.likesClick}
+                                        >
+                                            Likes : {this.props.likeCount}
                                         </Button>
                                         </Card.Text>
                                     </Card.Body>

@@ -14,7 +14,8 @@ class App extends Component {
     this.state = {
       users: [],
       searchField: '',
-      loading: false
+      loading: false,
+      likeCount: 0
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -32,6 +33,10 @@ class App extends Component {
     this.setState({ searchField: e.target.value })
   }
 
+  likesClick = () => {
+    this.setState({ likeCount: this.state.likeCount + 1 })
+  }
+
   render() {
     const { users, searchField } = this.state
     const filteredUsers = users.filter(user =>
@@ -40,10 +45,15 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Nav />
+          <Nav />
         <div className="container">
           <Search handleChange={this.handleChange} />
-          <Users users={filteredUsers} loading={this.state.loading} />
+          <Users 
+            users={filteredUsers} 
+            loading={this.state.loading} 
+            likeCount={this.state.likeCount}
+            likesClick={this.likesClick}
+          />
         </div>
       </div>
     )
